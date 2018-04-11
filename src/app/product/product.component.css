@@ -1,0 +1,49 @@
+.image {
+  width: 10%;
+  height: 10%;
+}
+
+.texteImage {
+  position: absolute;
+  bottom: 10px;
+  text-align: left;
+  color: white;
+  font-size: 30px;
+  font-family: 'Share Tech', sans-serif;
+  left: 105px;
+  width: 100%;
+}
+
+.progress {
+  margin-top: 60px;
+  height: 60px;
+  border-radius: 10px 30px 30px 10px;
+  box-shadow: 5px 10px 8px #888888;
+}
+
+.achatInfo {
+  color: white;
+  font-family: 'Permanent Marker', cursive;
+  background-color: #2d3652;
+  font-size: 18px;
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 5px 5px 8px #888888;
+  text-align: center;
+  height: 60px;
+}
+
+.valideAchat {
+  font-size: 20px;
+  height: 60px;
+  width: 100px;
+  color: white;
+  border: none;
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 5px 5px 8px #888888;
+  font-family: 'Permanent Marker', cursive;
+  background-color: #1ebc85;
+}
+
+.assombrir {
+  filter: grayscale(60%);
+}

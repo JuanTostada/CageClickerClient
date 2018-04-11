@@ -1,0 +1,142 @@
+
+ img {
+ 	width: 40%;
+ 	height: 40%;
+ }
+
+.logan {
+  width: 1000px;
+  height: 1000px;
+}
+.imageM {
+  width: 40%;
+ 	height: 40%;
+}
+
+.infoM {
+  margin-top: 10px;
+  font-family: 'Share Tech', sans-serif;
+  text-align: center;
+  font-size: 20px
+}
+.modal-title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 20px
+}
+
+.logo {
+  margin-top: 10px;
+}
+
+.titre {
+  margin-top: 30px;
+  font-family: 'Permanent Marker', cursive;
+}
+.entete {
+  background-color: #2d3652;
+  color: white;
+  height: 110px;
+}
+
+.test {
+  padding-left: 10px;
+}
+
+.BoutonMulti {
+  font-size: 20px;
+  height: 50px;
+  width: 80px;
+  margin-top: 25px;
+  color: white;
+  border: none;
+  border-radius: 10px 10px 10px 10px;
+  font-family: 'Permanent Marker', cursive;
+  background-color: #1ebc85;
+  opacity: 0.5;
+}
+
+.BoutonMulti:hover {
+  opacity: 1;
+}
+
+.BoutonManager {
+  margin-top: 20px;
+  font-size: 20px;
+  height: 30px;
+  width: 80px;
+  color: white;
+  border: none;
+  border-radius: 10px 10px 10px 10px;
+  font-family: 'Permanent Marker', cursive;
+  background-color: #1ebc85;
+}
+
+.assombrirM {
+  filter: grayscale(60%);
+}
+
+.ManagerAcquis {
+  display: none;
+}
+
+.BoutonMenu {
+  height: 80px;
+  width: 180px;
+  color: white;
+  margin-bottom: 20px;
+  font-size: 30px;
+  border-radius: 60px 10px 60px 10px;
+  box-shadow: 5px 5px 15px #888888;
+  font-family: 'Permanent Marker', cursive;
+  background-color: #1ebc85;
+  text-align: center;
+  border: none;
+  outline : none;
+}
+
+.BoutonMenu:hover {
+  color: #1ebc85;
+  background-color: white;
+  box-shadow: none;
+  border: solid 2px #1ebc85;
+}
+
+.boutonUnlock {
+  margin-bottom: 20px;
+  font-size: 12px;
+  height: 40px;
+  width: 150px;
+  color: white;
+  border: none;
+  text-align: center;
+  border-radius: 10px 10px 10px 10px;
+  font-family: 'Permanent Marker', cursive;
+  background-color: #1ebc85;
+}
+
+.menu {
+  padding-top: 15px;
+  text-align: center;
+}
+
+.badge {
+  font-family: 'Share Tech', sans-serif;
+}
+
+.badgeCache {
+  display: none;
+}
+
+.upgradeT {
+  font-family: 'Permanent Marker', cursive;
+  text-align: center;
+}
+
+.imageU {
+  width: 20%;
+ 	height: 20%;
+}
+
+input{
+  color:black;
+}

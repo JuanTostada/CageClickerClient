@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-4">
+  <div class="ensemble">
+    <div class="image"> <img (click)="startFabrication()" [attr.src]="'http://localhost:8080/CageClicker/'+'icones/'+product.logo"/>
+      <div class="texteImage">{{product.quantite}}</div>
+    </div>
+  </div>
+  </div>
+  <div class="col-md-8">
+    <div class="progress" #bar> </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="achatInfo">{{product.name}} :<br> <span [innerHTML]="product.cout | bigvalue"></span> </div>
+      </div>
+      <div class="col-md-2"> </div>
+      <div class="col-md-2">
+        <input  type="button" (click)="buy()" [ngClass]="{'assombrir':_argentTotal<product.cout,'valideAchat':true}" value="BUY {{_qtmulti}}" />
+      </div>
+      <div class="col-md-1"> </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,154 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<div class="container-fluid">
+  <div class="row entete">
+    <div class="col-md-2 test">
+      <span><img class="logo" [attr.src]="server+'icones/'+world.logo" /> </span>
+    </div>
+    <div class="col-md-8" style="text-align:center">
+      <h1 class="titre">
+        <span class="argent" id="worldname"> {{world.name}} </span> :
+        <span class="argent" [innerHTML]="world.money | bigvalue"> </span> Oscars
+      </h1>
+    </div>
+    <div class="col-md-2" style="text-align:center">
+      <input class="BoutonMulti" type="button" (click)="boucleAchat()" value="X {{qtmulti}}" />
+      <input type="text" [(ngModel)]="username" (change)="onUsernameChanged()"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 menu">
+      <div class="row">
+        <div class="col-md-2">
+        </div>
+        <input class="BoutonMenu" type="button" data-toggle="modal" (click)="unlocksModal.show()" value="Unlocks" />
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <div *ngFor="let upgrade of world.upgrades.pallier">
+            <span  [ngClass]="{'badge':upgrade.unlocked == false && world.money>=upgrade.seuil,'badgeCache':world.money<upgrade.seuil || upgrade.unlocked}">New</span>
+          </div>
+        </div>
+        <input class="BoutonMenu" type="button" data-toggle="modal" (click)="upgradesModal.show()" value="Upgrades" />
+      </div>
+    </div>
+    <div class="col-md-5">
+      <app-product [qtmulti]="qtmulti" [argentTotal]="world.money" (notifyArgent)="onBuy($event)" (notifyProduction)="onProductionDone($event)" [prod]="world.products.product[0]"></app-product>
+    </div>
+    <div class="col-md-5">
+      <app-product [qtmulti]="qtmulti" [argentTotal]="world.money" (notifyArgent)="onBuy($event)" (notifyProduction)="onProductionDone($event)" [prod]="world.products.product[3]"></app-product>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 menu">
+      <div class="row">
+        <div class="col-md-2">
+          <div *ngFor="let manager of world.managers.pallier">
+            <span  [ngClass]="{'badge':manager.unlocked == false && world.money>=manager.seuil,'badgeCache':world.money<manager.seuil || manager.unlocked}">New</span>
+          </div>
+        </div>
+        <input class="BoutonMenu" type="button" data-toggle="modal" (click)="managersModal.show()" value="Managers" />
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+        </div>
+        <input class="BoutonMenu" type="button" data-toggle="modal" (click)="investorsModal.show()"value="Investors" />
+      </div>
+    </div>
+    <div class="col-md-5">
+      <app-product [qtmulti]="qtmulti" [argentTotal]="world.money" (notifyArgent)="onBuy($event)" (notifyProduction)="onProductionDone($event)" [prod]="world.products.product[1]"></app-product>
+    </div>
+    <div class="col-md-5">
+      <app-product [qtmulti]="qtmulti" [argentTotal]="world.money" (notifyArgent)="onBuy($event)" (notifyProduction)="onProductionDone($event)" [prod]="world.products.product[4]"></app-product>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 menu">
+    </div>
+    <div class="col-md-5">
+      <app-product [qtmulti]="qtmulti" [argentTotal]="world.money" (notifyArgent)="onBuy($event)" (notifyProduction)="onProductionDone($event)" [prod]="world.products.product[2]"></app-product>
+    </div>
+    <div class="col-md-5">
+      <app-product [qtmulti]="qtmulti" [argentTotal]="world.money" (notifyArgent)="onBuy($event)" (notifyProduction)="onProductionDone($event)" [prod]="world.products.product[5]"></app-product>
+    </div>
+  </div>
+
+  <app-modal #managersModal>
+    <div class="app-modal-header">
+      <h4 class="modal-title">Engage des réalisateurs qui aideront Nicolas à gagner encore plus d'oscars !</h4>
+    </div>
+    <div class="app-modal-body">
+      <div *ngFor="let manager of world.managers.pallier">
+        <div class="row">
+          <div class="col-md-4"> <img [ngClass]="{'imageM': true, 'ManagerAcquis': manager.unlocked}" [attr.src]="'http://localhost:8080/CageClicker/'+'icones/'+manager.logo"/> </div>
+          <div [ngClass]="{'col-md-4': true, 'infoM': true, 'ManagerAcquis': manager.unlocked}">
+            {{manager.name}} <br>
+            {{manager.seuil}}
+          </div>
+          <div class="col-md-4">
+            <input type="button" (click)="hireManager(manager)" [ngClass]="{'assombrirM': world.money<manager.seuil,'BoutonManager': true, 'ManagerAcquis': manager.unlocked}" value="HIRE!"/>
+            <span [ngClass]="{'badge': world.money>=manager.seuil,'badgeCache': world.money<manager.seuil, 'ManagerAcquis': manager.unlocked}">New</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-modal-footer">
+      <button type="button" class="BoutonMulti" (click)="managersModal.hide()">Close</button>
+    </div>
+  </app-modal>
+
+  <app-modal #upgradesModal>
+    <div class="app-modal-header">
+      <h4 class="modal-title">Améliore le jeu d'acteur de Nicolas !</h4>
+    </div>
+    <div class="app-modal-body">
+      <div class="row">
+      <div *ngFor="let upgrade of world.upgrades.pallier">
+        <div class="col-md-4">
+          <div [ngClass]="{'upgradeT': true, 'ManagerAcquis': upgrade.unlocked}">{{upgrade.name}}</div>
+          <input [ngClass]="{'assombrirM': world.money<upgrade.seuil, 'boutonUnlock': true, 'ManagerAcquis': upgrade.unlocked }" (click)="buyUpgrade(upgrade)" type="button" value="{{upgrade.seuil}}" />
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="app-modal-footer">
+      <button type="button" class="BoutonMulti" (click)="upgradesModal.hide()">Close</button>
+    </div>
+  </app-modal>
+
+  <app-modal #unlocksModal>
+    <div class="app-modal-header">
+      <h4 class="modal-title">Les unlocks !</h4>
+    </div>
+    <div class="app-modal-body">
+      <div class="row">
+      <div *ngFor="let unlocks of world.products.product">
+        <div *ngFor="let unlock of unlocks.palliers.pallier">
+          <div class="col-md-4">
+            <div [ngClass]="{'upgradeT': unlock.unlocked, 'ManagerAcquis': unlock.unlocked == false}">{{unlock.name}} :</div>
+            <input [ngClass]="{'boutonUnlock': unlock.unlocked, 'ManagerAcquis': unlock.unlocked == false}" (click)="buyUnlock(unlock)" type="button" value="{{unlock.seuil}}  Nicolas Cage !" />
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    <div class="app-modal-footer">
+      <button type="button" class="BoutonMulti" (click)="unlocksModal.hide()">Close</button>
+    </div>
+  </app-modal>
+
+  <app-modal #investorsModal>
+    <div class="app-modal-header">
+      <h4 class="modal-title">Les investisseurs !</h4>
+    </div>
+    <div class="app-modal-body">
+      <img class="logan" src="../assets/logan.png" />
+    </div>
+    <div class="app-modal-footer">
+      <button type="button" class="BoutonMulti"
+      (click)="investorsModal.hide()">Close</button>
+    </div>
+  </app-modal>
+
+  <toaster-container></toaster-container>
+</div>
