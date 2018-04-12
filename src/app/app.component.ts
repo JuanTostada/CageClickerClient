@@ -26,39 +26,12 @@ export class AppComponent implements OnInit {
   }
 
   constructor (service: RestserviceService, toasterService: ToasterService) {
-   this.username = localStorage.getItem("username");
    this.server = service.getServer();
    this.toasterService = toasterService;
-   if(this.username==undefined){
-     this.username ="JuanTostada" + Math.floor(Math.random() * 10000);
-     localStorage.setItem("username", this.username);
-     service.setUser(this.username);
-   }
-   service.setUser(this.username);
    service.getWorld().then(
      world => {
       this.world = world;
       });
-  }
-
-  onUsernameChanged() {
-    this.service.getServer();
-    if(this.username==undefined){
-      this.username ="JuanTostada" + Math.floor(Math.random() * 10000);
-      localStorage.setItem("username", this.username);
-      this.service.setUser(this.username);
-      this.service.getWorld().then(
-        world => {
-         this.world = world;
-         });
-      console.log("aaa");
-    }
-    else {
-      this.username = localStorage.getItem("username");
-      this.service.setUser(this.username);
-      localStorage.getItem("username", this.usename)
-      console.log(this.username);
-    }
   }
 
   onProductionDone(p: Product) {
@@ -87,12 +60,10 @@ export class AppComponent implements OnInit {
     }
   }
    buyUnlock(u: Pallier) {
-     if(this.world.money>u.seuil) {
-       this.onBuy(u.seuil);
-       u.unlocked=true;
-       this.toasterService.pop('success', 'New Unlocks ! ', u.name);
-       this.world.products.product[u.idcible - 1].vitesse = this.world.products.product[u.idcible - 1].vitesse/u.ratio;
-    }
+     this.onBuy(u.seuil);
+     u.unlocked=true;
+     this.toasterService.pop('success', 'New Unlocks ! ', u.name);
+     this.world.products.product[u.idcible - 1].vitesse = this.world.products.product[u.idcible - 1].vitesse/u.ratio;
    }
 
   boucleAchat(){

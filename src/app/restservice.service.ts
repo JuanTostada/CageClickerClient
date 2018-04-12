@@ -42,10 +42,9 @@ export class RestserviceService {
 
 
   getWorld(): Promise<World> {
-    return this.http.get(this.server + "webresources/generic/world", {
-  headers: this.setHeaders(this.user)})
-   .toPromise().then(response =>
-  response.json()).catch(this.handleError);
-  };
-  };
+ return this.http.get(this.server + "webresources/generic/world")
+ .toPromise().then(response =>response.json()).catch(this.handleError);
+};
+
+
 }

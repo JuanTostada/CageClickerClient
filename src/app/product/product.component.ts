@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import {Product} from '../world';
 import { ToasterService } from 'angular2-toaster';
-import { ModalComponent} from './modal/modal.component';
+import { RestserviceService } from '../restservice.service';
 
 declare var require;
 const ProgressBar = require("progressbar.js");
@@ -23,9 +23,9 @@ export class ProductComponent implements OnInit {
   toasterService: ToasterService;
   test: any;
 
-  constructor(toasterService: ToasterService;) {
+  constructor(private service: RestserviceService, toasterService: ToasterService) {
     this.toasterService = toasterService;
-   }
+  }
 
   ngOnInit() {
     setInterval(() => { this.calcScore(); }, 100);
@@ -65,7 +65,7 @@ export class ProductComponent implements OnInit {
   }
 
 
-  calcScore(toasterService: ToasterService){
+  calcScore(){
     if(this.val == "max") {
         this.calcMaxCanBuy();
     }
